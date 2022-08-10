@@ -8,16 +8,16 @@
  */
 ssize_t _puts(char *str)
 {
-	ssize_t num, leng;
+	ssize_t num, len;
 
 	num = _strlen(str);
-	leng = write(STDOUT_FILENO, str, num);
-	if (leng != num)
+	len = write(STDOUT_FILENO, str, num);
+	if (len != num)
 	{
 		perror("Fatal Error");
 		return (-1);
 	}
-	return (leng);
+	return (len);
 }
 
 /**
@@ -29,16 +29,16 @@ char *_strdup(char *strtodup)
 {
 	char *copy;
 
-		int leng, i;
+		int len, i;
 
 	if (strtodup == 0)
 		return (NULL);
 
-	for (leng = 0; strtodup[leng]; leng++)
+	for (len = 0; strtodup[len]; len++)
 		;
-	copy = malloc((leng + 1) * sizeof(char));
+	copy = malloc((len + 1) * sizeof(char));
 
-	for (i = 0; i <= leng; i++)
+	for (i = 0; i <= len; i++)
 		copy[i] = strtodup[i];
 
 	return (copy);
@@ -73,34 +73,34 @@ int _strcmpr(char *strcmp1, char *strcmp2)
 char *_strcat(char *strc1, char *strc2)
 {
 	char *newstring;
-	unsigned int leng1, leng2, newleng, i, j;
+	unsigned int len1, len2, newlen, i, j;
 
-	leng1 = 0;
-	leng2 = 0;
+	len1 = 0;
+	len2 = 0;
 	if (strc1 == NULL)
-		leng1 = 0;
+		len1 = 0;
 	else
 	{
-		for (leng1 = 0; strc1[leng1]; leng1++)
+		for (len1 = 0; strc1[len1]; len1++)
 			;
 	}
 	if (strc2 == NULL)
-		leng2 = 0;
+		len2 = 0;
 	else
 	{
-		for (leng2 = 0; strc2[leng2]; leng2++)
+		for (len2 = 0; strc2[len2]; len2++)
 			;
 	}
-	newlen = leng1 + leng2 + 2;
-	newstring = malloc(newleng * sizeof(char));
+	newlen = len1 + len2 + 2;
+	newstring = malloc(newlen * sizeof(char));
 	if (newstring == NULL)
 		return (NULL);
-	for (i = 0; i < leng1; i++)
+	for (i = 0; i < len1; i++)
 		newstring[i] = strc1[i];
 	newstring[i] = '/';
-	for (j = 0; j < leng2; j++)
+	for (j = 0; j < len2; j++)
 		newstring[i + 1 + j] = strc2[j];
-	newstring[leng1 + leng2 + 1] = '\0';
+	newstring[len1 + len2 + 1] = '\0';
 	return (newstring);
 }
 
@@ -111,11 +111,11 @@ char *_strcat(char *strc1, char *strc2)
  */
 unsigned int _strlen(char *str)
 {
-	unsigned int leng;
+	unsigned int len;
 
-	leng = 0;
+	len = 0;
 
-	for (leng = 0; str[leng]; leng++)
+	for (len = 0; str[len]; len++)
 		;
-	return (leng);
+	return (len);
 }
